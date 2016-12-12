@@ -23,23 +23,26 @@ namespace cis237assignment6.Controllers
 
             //Setup some strings that might hold data from the session.
             //If the session is empty we can still use them as default values.
-            string filterId = "";
+            //string filterId = "";
             string filterName = "";
             string filterPack = "";
             string filterMin = "";
             string filterMax = "";
-            string filterActive = "";
+            //string filterActive = "";
 
             //Define a min and a max for price.
             int min = 0;
             int max = 100;
 
+            int packMin = 0;
+            int packMax = 50;
+
             //Check to see if there is a variable in the session, if there is assign it to the
             //variable we setup to hold the value.
-            if(Session["id"]!=null && !String.IsNullOrWhiteSpace((string)Session["id"]))
-            {
-                filterId = (string)Session["id"];
-            }
+            //if (Session["id"] != null && !String.IsNullOrWhiteSpace((string)Session["id"]))
+            //{
+            //    filterId = (string)Session["id"];
+            //}
             if(Session["name"]!=null && !String.IsNullOrWhiteSpace((string)Session["name"]))
             {
                 filterName = (string)Session["name"];
@@ -47,6 +50,7 @@ namespace cis237assignment6.Controllers
             if (Session["pack"] != null && !String.IsNullOrWhiteSpace((string)Session["pack"]))
             {
                 filterName = (string)Session["pack"];
+
             }
             if (Session["min"] != null && !String.IsNullOrWhiteSpace((string)Session["min"]))
             {
@@ -58,33 +62,37 @@ namespace cis237assignment6.Controllers
                 filterMax = (string)Session["Max"];
                 min = Int32.Parse(filterMax);
             }
-            if (Session["active"] != null && !String.IsNullOrWhiteSpace((string)Session["active"]))
-            {
-                filterName = (string)Session["active"];
-            }
+            //if (Session["active"] != null && !String.IsNullOrWhiteSpace((string)Session["active"]))
+            //{
+            //    filterName = (string)Session["active"];
+            //}
 
             //Do the filter on the Beverage Item set. Use the where that we used before.
             //When using EF this time send it more lamda expressions to narrow it down.
             //Since we set the values for each of the filter values we can count on this running with no 
             //errors.
             IEnumerable<Beverage> filtered = BeverageToFind.Where(Beverage => Beverage.price >= min &&
-                                                                  Beverage.price <= max &&
-                                                                  Beverage.id.Contains(filterId) &&
+                                                                  Beverage.price <= max 
+                                                                    //&&  Beverage.id.Contains(filterId) 
+                                                                    &&
                                                                   Beverage.name.Contains(filterName)&&
-                                                                  Beverage.pack.Contains(filterPack)&&
-                                                                  Beverage.active.Equals(filterActive));
+                                                                  Beverage.pack.Contains(filterPack)
+                                                                  //&&
+                                                                  //Beverage.active.Equals(filterActive)
+                                                                  );
 
             //Place the string representation of the values in the session into the ViewBag
             //so that they can be retrieved and displayed on the view.
-            ViewBag.filterMake = filterId;
-            ViewBag.filterDesc = filterName;
+            //ViewBag.filterMake = filterId;
+            ViewBag.filterName = filterName;
             ViewBag.filterPack = filterPack;
             ViewBag.filterMin = filterMin;
             ViewBag.filterMax = filterMax;
-            ViewBag.filterActive = filterActive;
+            //ViewBag.filterActive = filterActive;
 
             //Return the view with a filtered selection of the beverages.
             return View(filtered);
+
             //return View(db.Beverages.ToList());
         }
 
@@ -198,20 +206,20 @@ namespace cis237assignment6.Controllers
             //Get the form data that was sent out of the request object.
             //The key that is used as key to get the data matches the name property of the form control.
             //For us this is the first parameter.
-            String id = Request.Form.Get("id");
+            //String id = Request.Form.Get("id");
             String name = Request.Form.Get("name");
             String pack=Request.Form.Get("pack");
             String min = Request.Form.Get("min");
             String max = Request.Form.Get("max");
-            String active = Request.Form.Get("active");
+            //String active = Request.Form.Get("active");
 
             //Store the form data in the session so we can retrieve it later on the filter.
-            Session["id"] = "";
+            //Session["id"] = "";
             Session["name"] = "";
             Session["pack"] = "";
             Session["min"] = "";
             Session["max"] = "";
-            Session["active"] = "";
+            //Session["active"] = "";
 
             //redirect the user to the index page we will do the work of filtering in the index method.
             return RedirectToAction("Index");
