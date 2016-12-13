@@ -215,10 +215,10 @@ namespace cis237assignment6.Controllers
 
             //Store the form data in the session so we can retrieve it later on the filter.
             //Session["id"] = "";
-            Session["name"] = "";
-            Session["pack"] = "";
-            Session["min"] = "";
-            Session["max"] = "";
+            Session["name"] = "name";
+            Session["pack"] = "pack";
+            Session["min"] = "min";
+            Session["max"] = "max";
             //Session["active"] = "";
 
             //redirect the user to the index page we will do the work of filtering in the index method.
