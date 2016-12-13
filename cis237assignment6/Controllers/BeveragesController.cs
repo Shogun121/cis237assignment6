@@ -31,8 +31,8 @@ namespace cis237assignment6.Controllers
             //string filterActive = "";
 
             //Define a min and a max for price.
-            int min = 0;
-            int max = 100;
+            decimal min = 0;
+            decimal max = 100;
 
             //Check to see if there is a variable in the session, if there is assign it to the
             //variable we setup to hold the value.
@@ -52,12 +52,12 @@ namespace cis237assignment6.Controllers
             if (Session["min"] != null && !String.IsNullOrWhiteSpace((string)Session["min"]))
             {
                 filterMin = (string)Session["min"];
-                min = Int32.Parse(filterMin);
+                min = decimal.Parse(filterMin);
             }
-            if (Session["Max"] != null && !String.IsNullOrWhiteSpace((string)Session["Max"]))
+            if (Session["max"] != null && !String.IsNullOrWhiteSpace((string)Session["max"]))
             {
-                filterMax = (string)Session["Max"];
-                max = Int32.Parse(filterMax);
+                filterMax = (string)Session["max"];
+                max = decimal.Parse(filterMax);
             }
             //if (Session["active"] != null && !String.IsNullOrWhiteSpace((string)Session["active"]))
             //{
@@ -204,7 +204,7 @@ namespace cis237assignment6.Controllers
             //For us this is the first parameter.
             //String id = Request.Form.Get("id");
             String name = Request.Form.Get("name");
-            String pack=Request.Form.Get("pack");
+            String pack= Request.Form.Get("pack");
             String min = Request.Form.Get("min");
             String max = Request.Form.Get("max");
             //String active = Request.Form.Get("active");
