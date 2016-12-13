@@ -34,9 +34,6 @@ namespace cis237assignment6.Controllers
             int min = 0;
             int max = 100;
 
-            int packMin = 0;
-            int packMax = 50;
-
             //Check to see if there is a variable in the session, if there is assign it to the
             //variable we setup to hold the value.
             //if (Session["id"] != null && !String.IsNullOrWhiteSpace((string)Session["id"]))
@@ -60,7 +57,7 @@ namespace cis237assignment6.Controllers
             if (Session["Max"] != null && !String.IsNullOrWhiteSpace((string)Session["Max"]))
             {
                 filterMax = (string)Session["Max"];
-                min = Int32.Parse(filterMax);
+                max = Int32.Parse(filterMax);
             }
             //if (Session["active"] != null && !String.IsNullOrWhiteSpace((string)Session["active"]))
             //{
@@ -72,14 +69,13 @@ namespace cis237assignment6.Controllers
             //Since we set the values for each of the filter values we can count on this running with no 
             //errors.
             IEnumerable<Beverage> filtered = BeverageToFind.Where(Beverage => Beverage.price >= min &&
-                                                                  Beverage.price <= max 
-                                                                    //&&  Beverage.id.Contains(filterId) 
-                                                                    &&
+                                                                  Beverage.price <= max  &&
+                                                                    //&&  Beverage.id.Contains(filterId)                                                                   
                                                                   Beverage.name.Contains(filterName)&&
-                                                                  Beverage.pack.Contains(filterPack)
-                                                                  //&&
-                                                                  //Beverage.active.Equals(filterActive)
-                                                                  );
+                                                                  Beverage.pack.Contains(filterPack));
+            //&&
+            //Beverage.active.Equals(filterActive)
+
 
             //Place the string representation of the values in the session into the ViewBag
             //so that they can be retrieved and displayed on the view.
@@ -215,10 +211,10 @@ namespace cis237assignment6.Controllers
 
             //Store the form data in the session so we can retrieve it later on the filter.
             //Session["id"] = "";
-            Session["name"] = "name";
-            Session["pack"] = "pack";
-            Session["min"] = "min";
-            Session["max"] = "max";
+            Session["name"] = name;
+            Session["pack"] = pack;
+            Session["min"] = min;
+            Session["max"] = max;
             //Session["active"] = "";
 
             //redirect the user to the index page we will do the work of filtering in the index method.
