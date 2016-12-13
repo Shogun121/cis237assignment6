@@ -46,7 +46,7 @@ namespace cis237assignment6.Controllers
             }
             if (Session["pack"] != null && !String.IsNullOrWhiteSpace((string)Session["pack"]))
             {
-                filterName = (string)Session["pack"];
+                filterPack = (string)Session["pack"];
 
             }
             if (Session["min"] != null && !String.IsNullOrWhiteSpace((string)Session["min"]))
