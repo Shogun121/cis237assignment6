@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color:darkslategrey;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -22,4 +23,23 @@ select,
 textarea {
     max-width: 280px;
     color:blue;
+}
+h{
+
+    color:darkgrey;
+}
+p{
+    color:lightgray;
+
+}
+.jumbotron{
+    background-color:pink;
+    color:orange;
+}
+.jumbotron p{
+    color:black;
+}
+.row{
+    background-color:green;
+    color:yellow;
 }
